@@ -42,9 +42,9 @@ public class Task {
 
         Group assignedGroup = null;
 
-        int i = 0;
-        for (String element : line) {
-            assignedGroup = columnMapList.get(i++).get(element);
+
+        for (int i = 0; i < line.length; i++) {
+            assignedGroup = columnMapList.get(i).get(line[i]);
             if(assignedGroup != null) {
                 break;
             }
@@ -78,11 +78,12 @@ public class Task {
         try (BufferedWriter writer = Files.newBufferedWriter(path, StandardOpenOption.CREATE)) {
             writer.write("" + numOfMatching);
             writer.newLine();
-            int i = 1;
-            for(var group : finalGroups) {
-                writer.write("Группа " + i++);
+
+            for(int i = 0; i < finalGroups.size(); i++) {
+                writer.write("Группа " + (i+1));
                 writer.newLine();
-                for(var line : group.getLines()) {
+
+                for(var line : finalGroups.get(i).getLines()) {
                     StringBuilder builder = new StringBuilder();
                     for(var elem : line) {
                         builder.append(elem);
