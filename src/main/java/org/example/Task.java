@@ -48,7 +48,6 @@ public class Task {
             if(assignedGroup != null) {
                 break;
             }
-
         }
 
         if (assignedGroup == null) {
@@ -71,11 +70,13 @@ public class Task {
                 .stream()
                 .sorted((o1, o2) -> o2.getLines().size() - o1.getLines().size())
                 .collect(Collectors.toList());
-        System.out.println(finalGroups.stream().filter(i -> i.getLines().size() > 1).count());
+        System.out.printf("Total number of groups: %d\n", finalGroups.size());
+        long numOfMatching = finalGroups.stream().filter(i -> i.getLines().size() > 1).count();
+        System.out.printf("Number of groups with size > 1: %d\n", numOfMatching);
 
         Path path = Paths.get("out.txt");
         try (BufferedWriter writer = Files.newBufferedWriter(path, StandardOpenOption.CREATE)) {
-            writer.write("" + finalGroups.stream().filter(i -> i.getLines().size() > 1).count());
+            writer.write("" + numOfMatching);
             writer.newLine();
             int i = 1;
             for(var group : finalGroups) {
@@ -91,7 +92,6 @@ public class Task {
                     writer.write(builder.toString());
                     writer.newLine();
                 }
-
             }
         } catch (IOException e) {
             System.err.println("Error while printing result: " + e.getMessage());
