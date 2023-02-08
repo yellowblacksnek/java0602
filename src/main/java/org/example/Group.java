@@ -30,6 +30,8 @@ public class Group {
         lines.add(line);
 
         for(int i = 0; i < line.length; i++) {
+            if(line[i].equals("\"\"")) continue;
+
             Group prev = columnMapList.get(i).put(line[i], this);
             if(prev == null || prev == this) continue;
             prev = prev.getEndGroup();
