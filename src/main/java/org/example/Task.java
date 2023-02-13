@@ -59,13 +59,18 @@ public class Task {
         }
     }
 
-    public void printGroups(String filepath) {
+    public Set<Group> getEndGroups() {
         Set<Group> groupsSet = new HashSet<>();
         groups.forEach(i -> {
             if(i != null) {
                 groupsSet.add(i.getEndGroup());
             }
         });
+        return groupsSet;
+    }
+
+    public void printGroups(String filepath) {
+        Set<Group> groupsSet = getEndGroups();
         List<Group> finalGroups = groupsSet
                 .stream()
                 .sorted((o1, o2) -> o2.getLines().size() - o1.getLines().size())

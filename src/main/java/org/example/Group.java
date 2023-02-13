@@ -52,4 +52,8 @@ public class Group {
     public ArrayList<String[]> getLines() {
         return lines;
     }
+
+    public void setSuccessor(Group successor) {
+        this.successor = successor;
+    }
 }
