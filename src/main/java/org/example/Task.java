@@ -95,7 +95,8 @@ public class Task {
                 }
             }
         } catch (IOException e) {
-            System.err.println("Error while printing result: " + e.getMessage());
+            System.err.println("Error while printing result:");
+            e.printStackTrace();
         }
     }
 }
