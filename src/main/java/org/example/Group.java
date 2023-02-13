@@ -27,11 +27,13 @@ public class Group {
             return;
         }
 
-        lines.add(line);
+
+        boolean hasAtLeastOneElement = false;
 
         for(int i = 0; i < line.length; i++) {
-            if(line[i].equals("\"\"")) continue;
+            if(line[i].isEmpty() || line[i].equals("\"\"")) continue;
 
+            hasAtLeastOneElement = true;
             Group prev = columnMapList.get(i).put(line[i], this);
             if(prev == null || prev == this) continue;
             prev = prev.getEndGroup();
@@ -42,6 +44,9 @@ public class Group {
 
             prev.successor = this;
         }
+
+        if (hasAtLeastOneElement)
+            lines.add(line);
     }
 
     public ArrayList<String[]> getLines() {

@@ -35,13 +35,13 @@ public class Task {
                 return;
             }
         }
+        if(line.length == 0) return;
 
         while(columnMapList.size() < line.length) {
             columnMapList.add(new HashMap<>());
         }
 
         Group assignedGroup = null;
-
 
         for (int i = 0; i < line.length; i++) {
             assignedGroup = columnMapList.get(i).get(line[i]);
@@ -59,7 +59,7 @@ public class Task {
         }
     }
 
-    public void printGroups() {
+    public void printGroups(String filepath) {
         Set<Group> groupsSet = new HashSet<>();
         groups.forEach(i -> {
             if(i != null) {
@@ -74,7 +74,7 @@ public class Task {
         long numOfMatching = finalGroups.stream().filter(i -> i.getLines().size() > 1).count();
         System.out.printf("Number of groups with size > 1: %d\n", numOfMatching);
 
-        Path path = Paths.get("out.txt");
+        Path path = Paths.get(filepath);
         try (BufferedWriter writer = Files.newBufferedWriter(path, StandardOpenOption.CREATE)) {
             writer.write("" + numOfMatching);
             writer.newLine();
