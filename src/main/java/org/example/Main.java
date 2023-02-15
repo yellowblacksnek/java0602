@@ -1,36 +1,24 @@
 package org.example;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
+
+import static org.example.Utils.readUniqueLinesFromFile;
 
 public class Main {
 
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException {
         if(args.length < 1) {
             System.out.println("No filepath was provided");
         } else {
             long startTime = System.nanoTime();
             String filePath = args[0];
-            Path path = Paths.get(filePath);
-            Task task;
-            try(BufferedReader reader = Files.newBufferedReader(path)) {
-                Set<String> lines = reader.lines().collect(Collectors.toSet());
-                task = new Task(lines);
-            } catch (IOException e) {
-                System.err.println("File read error occurred:");
-                e.printStackTrace();
-                return;
-            }
-
+            Set<String> lines = readUniqueLinesFromFile(filePath);
+            Task task = new Task(lines);
             task.processLines();
-            task.printGroups("out.txt");
+            task.printGroupsToFile("out.txt");
 
             long endTime   = System.nanoTime();
             long totalTime = endTime - startTime;

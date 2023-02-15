@@ -9,6 +9,8 @@ import java.nio.file.StandardOpenOption;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static org.example.Utils.getPrettyIOException;
+
 public class Task {
     private final ArrayList<Map<String, Group>> columnMapList;
     private final Set<String> lines;
@@ -69,7 +71,7 @@ public class Task {
         return groupsSet;
     }
 
-    public void printGroups(String filepath) {
+    public void printGroupsToFile(String filepath) throws IOException {
         Set<Group> groupsSet = getEndGroups();
         List<Group> finalGroups = groupsSet
                 .stream()
@@ -100,8 +102,7 @@ public class Task {
                 }
             }
         } catch (IOException e) {
-            System.err.println("Error while printing result:");
-            e.printStackTrace();
+            throw getPrettyIOException(e);
         }
     }
 }
