@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class GroupTest {
 
     @Test
-    public void TestEndGroup() {
+    public void testEndGroup() {
         ArrayList<Map<String, Group>> columnMapList = new ArrayList<>();
         Group groupA = new Group(columnMapList);
         Group groupB = new Group(columnMapList);
@@ -23,7 +23,7 @@ public class GroupTest {
     }
 
     @Test
-    public void TestEndGroupMultipleSuccessors() {
+    public void testEndGroupMultipleSuccessors() {
         ArrayList<Map<String, Group>> columnMapList = new ArrayList<>();
         ArrayList<Group> groups = new ArrayList<>();
         int length = 10;
@@ -37,7 +37,7 @@ public class GroupTest {
     }
 
     @Test
-    public void TestAdd() {
+    public void testAdd() {
         ArrayList<Map<String, Group>> columnMapList = new ArrayList<>();
         Group group = new Group(columnMapList);
         String[] line = new String[]{"111", "222", "333"};
@@ -54,7 +54,7 @@ public class GroupTest {
     }
 
     @Test
-    public void TestAddSuccession() {
+    public void testAddSuccession() {
         ArrayList<Map<String, Group>> columnMapList = new ArrayList<>();
         Group group = new Group(columnMapList);
         String[] line = new String[]{"111", "222", "333"};

@@ -25,7 +25,7 @@ public class TaskTest {
     }
     @ParameterizedTest
     @MethodSource("filesToGroups")
-    public void TestTask(String filePath, int groupsNum) throws IOException {
+    public void testProcessLines(String filePath, int groupsNum) throws IOException {
         Path path = Path.of("src","test","resources", filePath);
         Task task;
         try(BufferedReader reader = Files.newBufferedReader(path)) {
